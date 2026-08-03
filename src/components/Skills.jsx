@@ -1,124 +1,82 @@
 import React from 'react';
 import LogoLoop from './LogoLoop';
 import { 
-  // Frontend & Languages
-  SiReact, SiTailwindcss, SiVite, SiJavascript, SiTypescript, SiNextdotjs, SiHtml5, SiCss, SiSass, SiBootstrap,
-  // Backend & Runtime
-  SiNodedotjs, SiExpress, SiPython, SiDjango, SiPhp, SiLaravel, SiGraphql,
-  // Databases & Cloud
-  SiMongodb, SiPostgresql, SiMysql, SiDocker,
-  // Design & Tools
-  SiGit, SiGithub, SiFigma, SiPostman, SiVercel, SiNpm
+  // Languages & Core
+  SiHtml5, SiCss, SiJavascript, SiTypescript, SiCplusplus, SiPhp, SiWordpress, SiC,
+  // Frontend Frameworks & Styling
+  SiReact, SiNextdotjs, SiTailwindcss, SiBootstrap, SiSass, SiVite,
+  // Backend & Databases
+  SiLaravel, SiNodedotjs, SiMysql, SiPostgresql, SiMongodb, SiLaragon, SiXampp, SiJquery,
+  // Design & UI/UX
+  SiFigma,
+  // DevOps & Tooling
+  SiGit, SiGithub, SiDocker, SiPostman, SiVercel,
+  // Hardware & IoT
+  SiArduino,
 } from 'react-icons/si';
 
-export default function Skills({ t }) {
-  // Comprehensive Icon Mapping (Add any missing custom names here)
-  const skillIcons = {
-    // Frontend
-    "React": <SiReact className="text-xl text-cyan-400" />,
-    "React.js": <SiReact className="text-xl text-cyan-400" />,
-    "Tailwind CSS": <SiTailwindcss className="text-xl text-sky-400" />,
-    "Tailwind": <SiTailwindcss className="text-xl text-sky-400" />,
-    "Vite": <SiVite className="text-xl text-purple-500" />,
-    "JavaScript": <SiJavascript className="text-xl text-yellow-400" />,
-    "JS": <SiJavascript className="text-xl text-yellow-400" />,
-    "TypeScript": <SiTypescript className="text-xl text-blue-500" />,
-    "TS": <SiTypescript className="text-xl text-blue-500" />,
-    "Next.js": <SiNextdotjs className="text-xl text-foreground" />,
-    "HTML": <SiHtml5 className="text-xl text-orange-600" />,
-    "HTML5": <SiHtml5 className="text-xl text-orange-600" />,
-    "CSS": <SiCss className="text-xl text-blue-600" />,
-    "Sass": <SiSass className="text-xl text-pink-500" />,
-    "Bootstrap": <SiBootstrap className="text-xl text-purple-500" />,
+const techLogos = [
+  // Languages
+  {node : <SiC className="text-blue-600 text-3xl" />, title: "C", href: "https://en.wikipedia.org/wiki/C_(programming_language)" },
+  { node: <SiJavascript className="text-yellow-400 text-3xl" />, title: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+  { node: <SiTypescript className="text-blue-500 text-3xl" />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+  { node: <SiCplusplus className="text-blue-600 text-3xl" />, title: "C++", href: "https://isocpp.org" },
+  { node: <SiWordpress className="text-blue-700 text-3xl" />, title: "WordPress", href: "https://wordpress.org" },
+  { node: <SiPhp className="text-indigo-400 text-3xl" />, title: "PHP", href: "https://www.php.net" },
 
-    // Backend & APIs
-    "Node.js": <SiNodedotjs className="text-xl text-green-500" />,
-    "Node": <SiNodedotjs className="text-xl text-green-500" />,
-    "Express": <SiExpress className="text-xl text-foreground" />,
-    "Express.js": <SiExpress className="text-xl text-foreground" />,
-    "Python": <SiPython className="text-xl text-yellow-500" />,
-    "Django": <SiDjango className="text-xl text-emerald-700" />,
-    "PHP": <SiPhp className="text-xl text-indigo-400" />,
-    "Laravel": <SiLaravel className="text-xl text-red-600" />,
-    "GraphQL": <SiGraphql className="text-xl text-pink-600" />,
+  // Frontend & UI
+  { node: <SiReact className="text-cyan-400 text-3xl" />, title: "React", href: "https://react.dev" },
+  { node: <SiNextdotjs className="text-black text-3xl" />, title: "Next.js", href: "https://nextjs.org" },
+  { node: <SiTailwindcss className="text-sky-400 text-3xl" />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+  { node: <SiBootstrap className="text-purple-500 text-3xl" />, title: "Bootstrap", href: "https://getbootstrap.com" },
+  { node: <SiSass className="text-pink-500 text-3xl" />, title: "Sass", href: "https://sass-lang.com" },
+  { node: <SiHtml5 className="text-orange-500 text-3xl" />, title: "HTML5", href: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
+  { node: <SiCss className="text-blue-400 text-3xl" />, title: "CSS", href: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+  { node: <SiVite className="text-purple-400 text-3xl" />, title: "Vite", href: "https://vitejs.dev" },
+{ node: <SiJquery className="text-blue-600 text-3xl" />, title: "jQuery", href: "https://jquery.com" },
+  // Backend & Databases
+  { node: <SiXampp className="text-orange-500 text-3xl" />, title: "XAMPP", href: "https://www.apachefriends.org/index.html" },
+  { node: <SiLaravel className="text-red-500 text-3xl" />, title: "Laravel", href: "https://laravel.com" },
+  { node: <SiNodedotjs className="text-green-500 text-3xl" />, title: "Node.js", href: "https://nodejs.org" },
+  { node: <SiLaragon className="text-blue-500 text-3xl" />, title: "Laragon", href: "https://laragon.org" },
 
-    // Databases & Cloud
-    "MongoDB": <SiMongodb className="text-xl text-green-600" />,
-    "PostgreSQL": <SiPostgresql className="text-xl text-blue-400" />,
-    "MySQL": <SiMysql className="text-xl text-blue-600" />,
+  { node: <SiMysql className="text-blue-500 text-3xl" />, title: "MySQL", href: "https://www.mysql.com" },
+  { node: <SiPostgresql className="text-blue-400 text-3xl" />, title: "PostgreSQL", href: "https://www.postgresql.org" },
+  { node: <SiMongodb className="text-green-400 text-3xl" />, title: "MongoDB", href: "https://www.mongodb.com" },
 
-    // Tools & Design
-    "Git": <SiGit className="text-xl text-orange-500" />,
-    "GitHub": <SiGithub className="text-xl text-foreground" />,
-    "Figma": <SiFigma className="text-xl text-purple-400" />,
-    "Postman": <SiPostman className="text-xl text-orange-600" />,
-    "Vercel": <SiVercel className="text-xl text-foreground" />,
-    "NPM": <SiNpm className="text-xl text-red-500" />,
-  };
+  // Design
+  { node: <SiFigma className="text-pink-400 text-3xl" />, title: "Figma", href: "https://figma.com" },
 
- const logoItems = t.skillGroups.flatMap((group) =>
-  group.items.map((item) => {
-    const cleanItem = item.trim();
-    
-    // Check if the item contains multiple skills separated by "/"
-    const parts = cleanItem.split('/').map(p => p.trim());
-    const matchedIcons = parts.map(part => skillIcons[part]).filter(Boolean);
+  
+  // DevOps & Tools
+  { node: <SiGit className="text-orange-500 text-3xl" />, title: "Git", href: "https://git-scm.com" },
+  { node: <SiGithub className="text-black text-3xl" />, title: "GitHub", href: "https://github.com" },
+  { node: <SiDocker className="text-sky-500 text-3xl" />, title: "Docker", href: "https://www.docker.com" },
+  { node: <SiPostman className="text-orange-600 text-3xl" />, title: "Postman", href: "https://www.postman.com" },
+  { node: <SiVercel className="text-black text-3xl" />, title: "Vercel", href: "https://vercel.com" },
 
-    return {
-      node: (
-        <div className="flex items-center gap-2.5 px-4 py-2 border rounded-xl bg-card text-foreground border-border hover:border-foreground/40 whitespace-nowrap shadow-sm">
-          {/* Render all matching icons, or fallback to dot if none match */}
-          {matchedIcons.length > 0 ? (
-            <div className="flex items-center gap-1.5">
-              {matchedIcons}
-            </div>
-          ) : (
-            <span className="w-2 h-2 rounded-full bg-primary" />
-          )}
-          <span className="font-mono text-sm font-medium">{cleanItem}</span>
-        </div>
-      ),
-      title: cleanItem,
-    };
-  })
-);
+  // Hardware / IoT
+  { node: <SiArduino className="text-teal-500 text-3xl" />, title: "Arduino", href: "https://www.arduino.cc" },
 
+];
+
+export default function Skills() {
   return (
-    <section id="skills" className="max-w-6xl px-4 py-16 mx-auto border-t sm:px-8 border-border">
-      <div data-reveal className="mb-10">
-        <p className="font-mono text-xs tracking-widest uppercase text-muted-foreground">{t.skillsTitle}</p>
-        <h2 className="text-3xl font-bold tracking-tight">{t.skillsSub}</h2>
+    <section className="py-12 bg-white text-black">
+      <div className="max-w-6xl mx-auto px-9 mb-14 text-center">
+        <h2 className="text-2xl font-bold tracking-wide">Tech Stack & Tools</h2>
       </div>
 
-      <div data-reveal className="grid grid-cols-1 gap-4 mb-12 sm:grid-cols-2 lg:grid-cols-4">
-        {t.skillGroups.map((g, i) => (
-          <div key={g.title} className="p-5 transition-colors border rounded-xl border-border hover:border-foreground/30">
-            <div className="flex items-center justify-center w-8 h-8 mb-4 font-mono text-xs rounded-md bg-primary text-background">
-              {String(i + 1).padStart(2, "0")}
-            </div>
-            <h3 className="mb-3 font-semibold">{g.title}</h3>
-            <ul className="space-y-1.5 text-sm text-muted-foreground">
-              {g.items.map((it) => (
-                <li key={it}>{it}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div data-reveal className="pt-4 overflow-hidden">
-        <LogoLoop
-          logos={logoItems}
-          speed={60}
-          direction="left"
-          logoHeight={42}
-          gap={16}
-          pauseOnHover
-          scaleOnHover
-          fadeOut
-          ariaLabel={t.skillsTitle}
-        />
-      </div>
+      <LogoLoop
+        logos={techLogos}
+        speed={100}
+        direction="left"
+        logoHeight={40}
+        gap={48}
+        pauseOnHover
+        scaleOnHover
+        fadeOut
+      />
     </section>
   );
 }
