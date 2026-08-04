@@ -16,7 +16,7 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
-        khmer: ["Noto Sans Khmer", "Inter", "sans-serif"],
+        khmer: ["Kantumruy", "Komtumruy", "Noto Sans Khmer", "Inter", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },
     },

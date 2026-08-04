@@ -1,135 +1,269 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { FiSun, FiMoon, FiMenu, FiX, FiGlobe } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header({ lang, setLang, dark, setDark, t }) {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
 
   const links = [
     ["#home", t?.nav?.home || "HOME", "home"],
     ["#about", t?.nav?.about || "ABOUT", "about"],
-    ["#portfolio", t?.nav?.projects || "WORK", "portfolio"],
+    ["#experience", t?.nav?.experience || "EXPERIENCE", "experience"],
+    ["#skills", t?.nav?.skills || "SKILLS", "skills"],
+    ["#projects", t?.nav?.projects || "PROJECTS", "projects"],
+    ["/certificates", t?.nav?.certificates || "CERTIFICATES", "certificates"],
     ["#contact", t?.nav?.contact || "CONTACT", "contact"],
   ];
 
-  // Track active section on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = links.map(([, , id]) => document.getElementById(id));
-      const scrollPosition = window.scrollY + 200;
+  // Smooth scroll / route navigation handler
+  const handleLinkClick = (e, href, id) => {
+    e.preventDefault();
+    setActiveSection(id);
+    setOpen(false);
 
-      sections.forEach((section) => {
-        if (section) {
-          const top = section.offsetTop;
-          const height = section.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section.id);
-          }
+    if (href.startsWith("/")) {
+      navigate(href);
+      return;
+    }
+
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 85;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // Scroll observer & scroll trigger handler
+  useEffect(() => {
+    const handleScrollState = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
         }
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -65% 0px",
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    links.forEach(([_, __, id]) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+
+    window.addEventListener("scroll", handleScrollState, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollState);
+      observer.disconnect();
+    };
+  }, [links]);
 
   return (
-    <header className="sticky top-0 z-50 w-full pt-4 pb-3 px-4 sm:px-8 transition-colors duration-300">
-      {/* Glassmorphic Floating Container */}
-      <div className="max-w-6xl mx-auto bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-[#060b72] dark:text-white rounded-2xl shadow-lg hover:shadow-2xl px-6 py-3.5 flex items-center justify-between border border-white/40 dark:border-slate-800 transition-all duration-300">
-        
+    <header className="sticky top-0 z-50 w-full px-3 py-3 transition-all duration-300 sm:px-6">
+      {/* Floating Glassmorphic Container */}
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className={`max-w-6xl mx-auto backdrop-blur-md rounded-2xl border px-4 py-2.5 flex items-center justify-between transition-all duration-300 ${
+          scrolled
+            ? "bg-white/90 dark:bg-black/90 border-black/15 dark:border-white/15 shadow-md"
+            : "bg-white/60 dark:bg-black/60 border-black/10 dark:border-white/10"
+        }`}
+      >
         {/* Brand Logo */}
-        <a 
-          href="#home" 
-          className="text-xl sm:text-2xl font-bold tracking-tight font-serif text-[#060b72] dark:text-blue-400 hover:opacity-85 transition-opacity focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg px-1"
+          <motion.a
+          href="#home"
+          onClick={(e) => handleLinkClick(e, "#home", "home")}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="flex items-center gap-2 text-sm font-bold tracking-wider text-black uppercase dark:text-white focus:outline-none"
         >
-          ជាប សូលីនដា
-        </a>
+          <span>{t?.brandName || "Solinda Cheab"}</span>
+          <motion.span
+            animate={{ scale: [1, 1.4, 1], opacity: [0.5, 1, 0.5] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            className="inline-block w-1.5 h-1.5 rounded-full bg-black dark:bg-white"
+          />
+        </motion.a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1 lg:space-x-2 text-xs font-semibold tracking-widest uppercase text-slate-700 dark:text-slate-300">
+        <nav className="hidden md:flex items-center space-x-1 text-[11px] font-semibold tracking-wider uppercase text-black/60 dark:text-white/60">
           {links.map(([href, label, id]) => {
             const isActive = activeSection === id;
             return (
               <a
                 key={href}
                 href={href}
-                className={`px-4 py-2 rounded-xl transition-all duration-200 relative focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                 onClick={(e) => handleLinkClick(e, href, id)}
+                 className={`relative px-3 py-1.5 rounded-xl transition-colors duration-200 focus:outline-none cursor-pointer ${
                   isActive
-                    ? "text-[#060b72] dark:text-blue-400 font-bold bg-blue-50 dark:bg-blue-950/50"
-                    : "hover:text-[#060b72] dark:hover:text-blue-300 hover:bg-slate-100/60 dark:hover:bg-slate-800/50"
+                    ? "text-black dark:text-white font-bold"
+                    : "hover:text-black dark:hover:text-white"
                 }`}
               >
-                {label}
+                <span className="relative z-10">{label}</span>
+
+                {/* Sliding Monochrome Pill */}
                 {isActive && (
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-[#060b72] dark:bg-blue-400 rounded-full" />
+                  <motion.div
+                    layoutId="activeNavTab"
+                    className="absolute inset-0 border bg-black/5 dark:bg-white/10 rounded-xl border-black/10 dark:border-white/10"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
                 )}
               </a>
             );
           })}
         </nav>
 
-        {/* Utility Controls */}
-        <div className="flex items-center gap-2.5">
+        {/* Action Controls */}
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Language Toggle */}
           {setLang && (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              type="button"
               onClick={() => setLang(lang === "en" ? "km" : "en")}
-              className="px-3 py-2 text-xs font-semibold rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-2.5 py-1.5 text-xs font-semibold rounded-xl bg-black/5 dark:bg-white/10 text-black dark:text-white hover:bg-black/10 dark:hover:bg-white/15 transition-all flex items-center gap-1.5 border border-black/10 dark:border-white/10 cursor-pointer focus:outline-none"
               aria-label="Switch Language"
             >
               <FiGlobe className="w-3.5 h-3.5" />
               <span>{lang === "en" ? "ខ្មែរ" : "EN"}</span>
-            </button>
+            </motion.button>
           )}
 
           {/* Theme Toggle Button */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.92 }}
+            type="button"
             onClick={() => setDark(!dark)}
-            className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 shadow-sm hover:shadow-md hover:scale-105 active:scale-95 transition-all text-[#060b72] dark:text-yellow-400 border border-slate-200/60 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex items-center justify-center w-8 h-8 text-black transition-all border cursor-pointer sm:w-9 sm:h-9 rounded-xl bg-black/5 dark:bg-white/10 border-black/10 dark:border-white/10 dark:text-white focus:outline-none"
             aria-label="Toggle Theme"
           >
-            {dark ? (
-              <FiSun className="w-4 h-4 transition-transform rotate-0 hover:rotate-45" />
-            ) : (
-              <FiMoon className="w-4 h-4 text-amber-500 fill-amber-500 transition-transform -rotate-12 hover:rotate-0" />
-            )}
-          </button>
+            <AnimatePresence mode="wait" initial={false}>
+              {dark ? (
+                <motion.div
+                  key="sun"
+                  initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <FiSun className="w-4 h-4" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="moon"
+                  initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <FiMoon className="w-4 h-4" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
 
-          {/* Mobile Hamburger Button */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-[#060b72] dark:text-white shadow-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+          {/* Mobile Menu Toggle */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.92 }}
+            type="button"
+            onClick={() => setOpen((prev) => !prev)}
+            className="p-2 text-black border cursor-pointer md:hidden rounded-xl bg-black/5 dark:bg-white/10 dark:text-white border-black/10 dark:border-white/10 focus:outline-none"
             aria-label={open ? "Close Menu" : "Open Menu"}
             aria-expanded={open}
           >
-            {open ? <FiX className="w-5 h-5" /> : <FiMenu className="w-5 h-5" />}
-          </button>
+            <AnimatePresence mode="wait" initial={false}>
+              {open ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <FiX className="w-4 h-4" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <FiMenu className="w-4 h-4" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Mobile Navigation Dropdown */}
-      {open && (
-        <div className="md:hidden max-w-6xl mx-auto mt-2 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl p-4 shadow-2xl flex flex-col gap-1 text-xs font-semibold tracking-widest uppercase border border-slate-200 dark:border-slate-800 animate-in fade-in slide-in-from-top-2 duration-200">
-          {links.map(([href, label, id]) => {
-            const isActive = activeSection === id;
-            return (
-              <a
-                key={href}
-                href={href}
-                onClick={() => setOpen(false)}
-                className={`px-4 py-3 rounded-xl transition-colors ${
-                  isActive
-                    ? "text-[#060b72] dark:text-blue-400 font-bold bg-blue-50 dark:bg-blue-950/50"
-                    : "text-slate-700 dark:text-slate-200 hover:text-[#060b72] dark:hover:text-blue-300 hover:bg-slate-100 dark:hover:bg-slate-800"
-                }`}
-              >
-                {label}
-              </a>
-            );
-          })}
-        </div>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="flex flex-col max-w-6xl gap-1 p-2.5 mx-auto mt-2 text-[11px] font-semibold tracking-wider uppercase border shadow-xl md:hidden bg-white/95 dark:bg-black/95 backdrop-blur-2xl rounded-2xl border-black/10 dark:border-white/10"
+          >
+            {links.map(([href, label, id], idx) => {
+              const isActive = activeSection === id;
+              return (
+                <motion.a
+                  key={href}
+                  href={href}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.03, duration: 0.2 }}
+                   onClick={(e) => handleLinkClick(e, href, id)}
+                   className={`px-3.5 py-2.5 rounded-xl transition-all cursor-pointer flex items-center justify-between ${
+                    isActive
+                      ? "text-black dark:text-white font-bold bg-black/5 dark:bg-white/10"
+                      : "text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5"
+                  }`}
+                >
+                  <span>{label}</span>
+                  {isActive && (
+                    <motion.span
+                      layoutId="mobileActiveDot"
+                      className="w-1.5 h-1.5 rounded-full bg-black dark:bg-white"
+                    />
+                  )}
+                </motion.a>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

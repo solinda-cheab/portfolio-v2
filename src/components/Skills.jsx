@@ -62,7 +62,7 @@ const techLogos = [
 
 export default function Skills() {
   return (
-    <section className="py-12 bg-white text-black">
+    <section id="skills" data-reveal className="py-12 bg-white text-black">
       <div className="max-w-6xl mx-auto px-9 mb-14 text-center">
         <h2 className="text-2xl font-bold tracking-wide">Tech Stack & Tools</h2>
       </div>
