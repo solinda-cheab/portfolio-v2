@@ -45,7 +45,7 @@ const projectsData = [
     tag: "Frontend Project",
     description:
       "A modern landing page for a creative agency, featuring responsive design, interactive elements, and seamless user experience.",
-    techStack: ["javascript", "react", "tailwind"],
+    techStack: ["javascript", "react", "tailwind", "opengraph"],
     previewImages: [
       "/agency-website/1.png",
       "/agency-website/2.png",

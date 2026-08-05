@@ -34,7 +34,7 @@ export default function Certificates({ t }) {
   const hasMore = allCerts.length > certificateList.length;
 
   return (
-    <section id="certificates" className="w-full bg-[#1e2022] py-20 px-4 sm:px-8 font-sans">
+    <section id="certificates" className="w-full px-4 py-20 font-sans bg-black sm:px-8">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold tracking-tight text-center text-white sm:text-4xl mb-14">
           {t?.certSub || "My Training Course Certificate"}

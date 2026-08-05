@@ -199,9 +199,7 @@ export default function Hero({ t }) {
                           <div key={i} className="h-full bg-slate-900" style={{ width: `${w}px` }} />
                         ))}
                       </div>
-                      <span className="text-[8px] font-mono font-bold text-slate-800 tracking-wider">
-                        000090135
-                      </span>
+                      
                     </div>
                   </div>
 
