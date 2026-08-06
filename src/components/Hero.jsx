@@ -104,11 +104,11 @@ export default function Hero({ t }) {
             <motion.a
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              href="#cv"
+              href="./CHEABSOLINDA_CV.pdf"
               className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-black text-white dark:bg-white dark:text-black px-6 py-3.5 text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-all shadow-md"
             >
               <FiDownload className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
-              <span>{t?.ctaProjects || "View Projects"}</span>
+              <span>{t?.ctaCV || "View CV"}</span>
             </motion.a>
 
             <motion.a

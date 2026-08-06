@@ -5,7 +5,7 @@ export const T = {
     heroTitle: "Hi, I'm Linda.",
     heroSub:
 "Frontend Developer & UI/UX Designer - focused on crafting high-performance, modern web interfaces.",
-    ctaProjects: "View Projects",
+    ctaCV: "View CV",
     ctaContact: "Get in Touch",
     aboutTitle: "About",
     aboutSub: "The short version.",
@@ -52,7 +52,7 @@ export const T = {
     ],
     projectsTitle: "Projects",
     projectsSub: "A selection of recent work.",
-    viewProject: "View Project",
+    viewCV: "View CV",
     projects: [
       { title: "R. Alvarez Agency Site", tag: "React", desc: "Digital marketing agency website rebuilt as a structured React component library, now integrating Storyblok CMS.", href: "#" },
       { title: "MOSC Sudoku Challenge 2.0", tag: "React · SPA", desc: "Frontend single-page application built for a national Sudoku competition.", href: "#" },
@@ -154,7 +154,7 @@ export const T = {
     ],
     projectsTitle: "គម្រោង",
     projectsSub: "ការងារថ្មីៗមួយចំនួន។",
-    viewProject: "មើលគម្រោង",
+    viewCV: "មើលប្រវត្តិរូប",
     projects: [
       { title: "R. Alvarez Agency Site", tag: "React", desc: "គេហទំព័រភ្នាក់ងារទីផ្សារឌីជីថល  React component library ព្រមទាំងភ្ជាប់ជាមួយ Storyblok CMS។", href: "#" },
       { title: "MOSC Sudoku Challenge 2.0", tag: "React · SPA", desc: "កម្មវិធីទំព័រតែមួយសម្រាប់ការប្រកួត Sudoku ថ្នាក់ជាតិ។", href: "#" },
