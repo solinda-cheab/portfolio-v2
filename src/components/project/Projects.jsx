@@ -18,6 +18,7 @@ const TechLogos = {
   npm: <SiNpm className="w-5 h-5 text-red-600" title="npm" />,
   css: <SiCss className="w-5 h-5 text-blue-600" title="CSS3" />,
   svelte: <SiSvelte className="w-5 h-5 text-orange-500" title="Svelte" />,
+  "lucid-react": <SiReact className="w-5 h-5 text-cyan-400" title="Lucid React" />,
 };
 
 const projectsData = [
@@ -34,6 +35,22 @@ const projectsData = [
       "/e-invitation/Screenshot 2026-08-04 170252.png",
       "/e-invitation/Screenshot 2026-08-04 170307.png",
       "/e-invitation/Screenshot 2026-08-04 170316.png"
+
+    ]
+  },
+   {
+    id: "sodoku-game",
+    title: "Sudoku Game",
+    date: "Released Jan 15, 2026",
+    price: "All-in-one Developer",
+    tag: "Frontend Project",
+    description:
+      "A Sudoku game built with React, Tailwind CSS, and Framer Motion. Features include responsive design, interactive animations, and customizable content for a modern gaming experience.",
+    techStack: ["react", "tailwind", "javascript", "lucid-react"],
+    previewImages: [
+     "/sudoku/1.png",
+     "/sudoku/2.png",
+     "/sudoku/3.png"
 
     ]
   },

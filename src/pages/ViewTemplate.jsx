@@ -59,6 +59,31 @@ const ViewTemplate = ({ t }) => {
       "/e-invitation/Screenshot 2026-08-04 170316.png"
     ],
   },
+    "sodoku-game": {
+    title: "Sudoku Game",
+    subtitle: "A modern Sudoku game built with React and JavaScript.",
+    liveUrl: "https://sudoku-game.vercel.app/",
+    githubUrl: "https://github.com/solinda-cheab/game-ui",
+    previewImage: "/sudoku/1.png",
+    overview: "A modern Sudoku game built with React and TypeScript.",
+    problem: "Players need a modern, interactive, and mobile-responsive Sudoku game that provides a seamless gaming experience.",
+    approach: "Leveraged component-driven architecture with React and TypeScript for dynamic gameplay, styled via Tailwind CSS utility classes.",
+    result: "Delivered an elegant, high-performing Sudoku game featuring smooth interactions, dual-framework adaptability, and fluid viewports across desktop and mobile devices.",
+    reflection: "Building a digital Sudoku game required balancing fluid design aesthetics with reliable performance across mobile viewports. Leveraging React and TypeScript, I engineered interactive micro-animations and smooth layout transitions without compromising load times. Implementing component-driven styling via Tailwind CSS made the design scalable and customizable for dual-framework availability in Next.js and Astro. This project deepened my understanding of state-driven animations, static-site generation performance, and asset optimization for media-heavy web applications.",
+    role: "Game Designer ",
+    timeline: "DEC 2025",
+    outcome: "Built a responsive template with Next.js and Astro editions, featuring a clean component library and Tailwind CSS styling.",
+    tags: ["react", "tailwind", "javascript", "npm"],
+    location: "Based in Phnom Penh.",
+    freelanceStatus: "This template is available for purchase.",
+    previewImages: [
+     "/sudoku/1.png",
+     "/sudoku/2.png",
+     "/sudoku/3.png"
+
+    ],
+  },
+    
     "apex-dashboard": {
       title: "Apex Dashboard",
       subtitle: "A modern analytics and SaaS admin dashboard template with rich UI components.",
