@@ -48,9 +48,9 @@ const projectsData = [
       "A Sudoku game built with React, Tailwind CSS, and Framer Motion. Features include responsive design, interactive animations, and customizable content for a modern gaming experience.",
     techStack: ["react", "tailwind", "javascript", "lucid-react"],
     previewImages: [
-     "/sudoku/3.png",
+     "/sudoku/1.png",
      "/sudoku/2.png",
-     "/sudoku/31.png"
+     "/sudoku/3.png"
 
     ]
   },
@@ -64,9 +64,9 @@ const projectsData = [
       "Roomkh is a website for help all the Cambodian fiding their place or house for living and selling their huse ",
     techStack: ["react", "tailwind", "javascript", "lucid-react"],
     previewImages: [
-     "/roomkh/1.png",
+     "/roomkh/3.png",
      "/roomkh/2.png",
-     "/roomkh/3.png"
+     "/roomkh/31.png"
 
     ]
   },
