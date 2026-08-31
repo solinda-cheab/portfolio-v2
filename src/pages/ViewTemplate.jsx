@@ -77,9 +77,9 @@ const ViewTemplate = ({ t }) => {
     location: "Based in Phnom Penh.",
     freelanceStatus: "This template is available for purchase.",
     previewImages: [
-     "/sudoku/1.png",
+     "/sudoku/3.png",
      "/sudoku/2.png",
-     "/sudoku/3.png"
+     "/sudoku/31.png"
 
     ],
   },
@@ -126,6 +126,28 @@ const ViewTemplate = ({ t }) => {
         "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=80",
       ],
     },
+"roomkh": {
+  "title": "RoomKH",
+  "subtitle": "A modern property listing and real estate management platform for renters, owners, and agents.",
+  "liveUrl": "https://roomkh.com",
+  "githubUrl": "https://github.com/roomkh/roomkh-frontend",
+  "previewImage": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80",
+  "overview": "RoomKH is a real estate and housing management system engineered to streamline property searches, listing approvals, and multi-role operations across Cambodia.",
+  "problem": "Renters and buyers struggle to find verified properties in Phnom Penh and surrounding areas, while property owners need a streamlined dashboard to handle approvals, listing stats, and revenue tracking.",
+  "approach": "Built a modular, responsive web app featuring role-guarded routes (Seeker, Owner, Admin), dynamic analytics data visualizers, and structured filtering workflows.",
+  "result": "A high-performance management dashboard and user marketplace supporting property approvals, growth metrics tracking, and listing control.",
+  "role": "Frontend Developer",
+  "timeline": "AUGUST 2026",
+  "outcome": "Developed the complete admin management dashboard, authentication flows, and real estate management UI with React, TypeScript, and Tailwind CSS.",
+  "tags": ["react", "typescript", "tailwind", "vite", "axios"],
+  "location": "Phnom Penh, Cambodia",
+  "freelanceStatus": "Available for custom web applications and real estate portal development.",
+   "previewImages": [
+    "/roomkh/3.png",
+      "/roomkh/2.png",
+      "/roomkh/31.png"
+   ]
+},
     "agency-landingpage": {
     title: "Agency Landing Page",
     subtitle: "A modern landing page for a creative agency built with React and Tailwind.",
