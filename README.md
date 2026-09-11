@@ -1,9 +1,7 @@
 # Linda — Portfolio
 
 A personal portfolio built with **React + Vite + Tailwind CSS**, styled after the shadcn/ui
-aesthetic (neutral palette, bordered cards, clean type). Includes SEO/OpenGraph metadata,
-a dark/light toggle, an English ⇄ Khmer language toggle, and a certificates section that's
-hidden by default and only shown in a modal when the user clicks "View Certificates."
+aesthetic (neutral palette, bordered cards, clean type). Includes SEO/OpenGraph metadata.
 
 ## Project structure
 
