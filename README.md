@@ -40,20 +40,6 @@ npm run dev       # start local dev server
 npm run build      # production build to /dist
 npm run preview     # preview the production build
 ```
-
-## Before you publish — replace these placeholders
-
-| What | Where |
-|---|---|
-| Email address | `src/components/Contact.jsx` (`mailto:your.email@example.com`) |
-| GitHub URL | `src/components/Contact.jsx` |
-| LinkedIn URL | `src/components/Contact.jsx` |
-| Resume file | Add `resume.pdf` to `/public/` (linked from Contact) |
-| Certificates | `src/i18n/translations.js` → `certSample` (title, issuer, date) for both `en` and `km` |
-| Project links | `src/i18n/translations.js` → each project's `href` |
-| OpenGraph image | Add `og-image.png` (1200×630px) to `/public/`, referenced in `index.html` |
-| Canonical domain | `index.html` → `og:url`, `twitter:image`, `<link rel="canonical">`, and the JSON-LD `url` |
-
 ## Notes
 
 - All content strings live in `src/i18n/translations.js` — edit copy there rather than
