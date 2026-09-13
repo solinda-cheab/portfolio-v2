@@ -1,7 +1,4 @@
-# Linda — Portfolio
 
-A personal portfolio built with **React + Vite + Tailwind CSS**, styled after the shadcn/ui
-aesthetic (neutral palette, bordered cards, clean type). Includes SEO/OpenGraph metadata.
 
 ## Project structure
 
